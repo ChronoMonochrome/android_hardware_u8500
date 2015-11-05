@@ -639,9 +639,15 @@ static int gralloc_alloc_framebuffer_locked(alloc_device_t* dev,
         return 0;
     }
 
-    if (bufferMask >= ((1LU<<numBuffers)-1)) {
-        // We ran out of buffers.
-        return -ENOMEM;
+    while (bufferMask >= ((1LU<<numBuffers)-1) && numBuffers > 0) {
+        // try to decrease numBuffers
+	numBuffers -= 1;
+	m->numBuffers = numBuffers;
+    }
+
+    if (!numBuffers) {
+	// we ran out of buffers
+	return -ENOMEM;
     }
 
     // create a "fake" handles for it
