@@ -21,9 +21,10 @@ MULTIMEDIA_PATH := $(LOCAL_PATH)/../../multimedia
 include $(CLEAR_VARS)
 LOCAL_C_INCLUDES := $(GRALLOC_PATH) $(MULTIMEDIA_PATH)
 LOCAL_PRELINK_MODULE := false
+# LOCAL_PROPRIETARY_MODULE := true
 LOCAL_MODULE_PATH := $(TARGET_OUT_SHARED_LIBRARIES)/hw
 LOCAL_SHARED_LIBRARIES := liblog libcutils libEGL libGLESv1_CM libhardware
-LOCAL_SRC_FILES := hwcomposer.c sw_vsync.c
+LOCAL_SRC_FILES := hwc.cpp sw_vsync.c
 #vsync_monitor.c
 LOCAL_MODULE := hwcomposer.$(TARGET_BOARD_PLATFORM)
 LOCAL_CLANG := false
